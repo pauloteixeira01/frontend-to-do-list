@@ -29,16 +29,16 @@ export default function Header() {
     return pathName === `/${path}` ? 'active' : ''
   }
 
-  async function Logout() {
+  function Logout() {
     localStorage.removeItem('@yourMac/macaddress');
     window.location.reload();
   }
-  console.log('Lauren Phillips: ', isConnected)
+  
   return (
     <StyledContainer>
       <StyledContent>
         <StyledContentTitle>
-          <StyledImage src='imgs/logo.png' alt='logo' />
+          <h2>To do list</h2>
           <StyledSubTitle>
             Google
           </StyledSubTitle>
@@ -46,7 +46,7 @@ export default function Header() {
         <StyledMenu>
           <FaBars onClick={showSiderbar} />
         </StyledMenu>
-        <StyledNavLinks menu={sidebar}>
+        <StyledNavLinks>
           <StyledCloseSidebar onClick={showSiderbar}><FaTimes /></StyledCloseSidebar>
         
           <StyledLink 
@@ -64,7 +64,7 @@ export default function Header() {
           >
             SCHEDULE TASK
           </StyledLink>    
-
+          
           { !isConnected ? (
             <StyledLink 
               href="/pages/qrcode" 
