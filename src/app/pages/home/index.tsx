@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
+import { Navigate } from 'react-router-dom';
 
 import api from '@/app/services/api';
 import isConnected from '@/app/utils/isConnected';
@@ -28,7 +30,7 @@ export default function Home() {
 
   const [ filterActived, setFilterActived ] = useState('all');
   const [tasks, setTasks] = useState<TaskProps[]>([]);
-  const [redirect, setRedirect] = useState(false);
+  const [redirection, setRedirection] = useState(false);
 
   async function loadTasks() {
     await api.get(`/task/filter/${filterActived}/${isConnected}`)
@@ -40,18 +42,19 @@ export default function Home() {
   function Notification() {
     setFilterActived('late');
   }
-
+  console.log('Gianna: ', isConnected)
   useEffect(() => {
     loadTasks();
 
     if (!isConnected) {
-      setRedirect(true);
+      console.log('In')
+      setRedirection(true);
     }
   }, [filterActived, loadTasks])
 
   return (
     <Container>
-      { redirect && <Link href="/qrcode"/> }
+      {/* { redirection && redirect('/pages/qrcode')} */}
             
       <FilterArea>
         <button type="button" onClick={() => setFilterActived("all")}>

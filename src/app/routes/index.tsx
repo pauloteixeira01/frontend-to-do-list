@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import Home from '@/app/pages/home';
-import Task from '@/app/pages/task/page';
-import QrCode from '@/app/pages/qrcode/page';
+import Home from '../pages/home';
+import Task from '../pages/task/page';
+import QrCode from '../pages/qrcode/page'
 
 export default function App() {
 	return(

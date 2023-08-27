@@ -2,6 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
+
+import {Navigate} from 'react-router-dom'
 import { format } from 'date-fns';
 // import { TimeField } from '@mui/x-date-pickers/TimeField';
 
@@ -24,7 +27,7 @@ interface MatchProps {
 }
 
 function Business({ match }: MatchProps) {
-  const [ redirect, setRedirect ] = useState(false);
+  const [ redirection, setRedirection ] = useState(false);
   const [ type, setType ] = useState(0);
   // const [ id, setId ] = useState(); 
   const [ done, setDone ] = useState(false);
@@ -85,7 +88,7 @@ function Business({ match }: MatchProps) {
         name,
         description,
         when: `${date}T${hour}:00.000`
-      }).then(() => setRedirect(true))
+      }).then(() => setRedirection(true))
     } else { 
       await api.post('/task',{
         macaddress: isConnected,
@@ -93,7 +96,7 @@ function Business({ match }: MatchProps) {
         name,
         description,
         when: `${date}T${hour}:${minute}:00.000`
-      }).then(() => setRedirect(true))
+      }).then(() => setRedirection(true))
     } 
   }
 
@@ -101,20 +104,20 @@ function Business({ match }: MatchProps) {
     const res = window.confirm('Are you sure you want to delete the task?');
     if (res === true) {
       await api.delete(`/task/${match?.params.id}`)
-      .then(() => setRedirect(true)); 
+      .then(() => setRedirection(true)); 
     }   
   }
 
   useEffect(() => {
     if (!isConnected) {
-      setRedirect(true);
+      setRedirection(true);
     }
     LoadTaskDetails();
   }, [])  
  
   return (
     <S.Container>
-      { redirect && <Link href="/task" /> }
+      {/* { redirection && redirect('pages/task') } */}
     
       <S.Form>
         <S.TypeIcons>

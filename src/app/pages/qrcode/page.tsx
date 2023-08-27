@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import Qr from 'qrcode.react';
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
+import {Navigate} from 'react-router-dom'
 
 import Footer from '@/app/components/Footer';
 
@@ -10,21 +12,23 @@ import * as S from './styles';
 
 export default function Qrcode() {
     const [mac, setMac] = useState('');
-	const [redirect, setRedirect] = useState(false);
+	const [redirection, setRedirection] = useState(false);
 
 	async function SaveMac() {
+		console.log('Called function: ', mac)
 		if (!mac) {
 			alert('Informe o código do smartphone');
 		} else {
+			console.log('Bridgette B: ')
 			await localStorage.setItem('@yourMac/macaddress', mac);
-			setRedirect(true);
-			window.location.reload();
+			setRedirection(true);
+			// window.location.reload();
 		}		
 	}
-
+	console.log('CarmellaBing: ', redirection)
 	return(
 		<S.Container>
-			{ redirect && <Link href="/"/> }
+			{ redirection && redirect('/') }
 
 			<S.Content>
 				<h1>Please, use a QRCODE reader app.</h1>

@@ -4,16 +4,19 @@ import React, { useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { usePathname } from 'next/navigation'
 
+import isConnected from '@/app/utils/isConnected'
+
 import { 
   StyledContainer, 
   StyledContent, 
   StyledContentTitle, 
-  StyledTitle, 
+  StyledImage, 
   StyledSubTitle, 
   StyledMenu, 
   StyledNavLinks, 
   StyledCloseSidebar,
-  StyledLink
+  StyledLink,
+  StyledLogOut
 } from './styles'
 
 export default function Header() {
@@ -26,11 +29,16 @@ export default function Header() {
     return pathName === `/${path}` ? 'active' : ''
   }
 
+  async function Logout() {
+    localStorage.removeItem('@yourMac/macaddress');
+    window.location.reload();
+  }
+  console.log('Lauren Phillips: ', isConnected)
   return (
     <StyledContainer>
       <StyledContent>
         <StyledContentTitle>
-          <StyledTitle>To do list</StyledTitle>
+          <StyledImage src='imgs/logo.png' alt='logo' />
           <StyledSubTitle>
             Google
           </StyledSubTitle>
@@ -39,29 +47,35 @@ export default function Header() {
           <FaBars onClick={showSiderbar} />
         </StyledMenu>
         <StyledNavLinks menu={sidebar}>
-            <StyledCloseSidebar onClick={showSiderbar}><FaTimes /></StyledCloseSidebar>
-          
+          <StyledCloseSidebar onClick={showSiderbar}><FaTimes /></StyledCloseSidebar>
+        
+          <StyledLink 
+            href="/" 
+            className={activeLink('')} 
+            onClick={showSiderbar}
+          >
+            HOME
+          </StyledLink>
+
+          <StyledLink 
+            href="/pages/task" 
+            className={activeLink('/task')} 
+            onClick={showSiderbar}
+          >
+            SCHEDULE TASK
+          </StyledLink>    
+
+          { !isConnected ? (
             <StyledLink 
-                href="/" 
-                className={activeLink('')} 
-                onClick={showSiderbar}>
-                    HOME
+              href="/pages/qrcode" 
+              className={activeLink('/pages/qrcode')} 
+              onClick={showSiderbar}
+            >
+              SYNCHRONIZE SMARTPHONE
             </StyledLink>
-
-            <StyledLink 
-                href="/pages/task" 
-                className={activeLink('task')} 
-                onClick={showSiderbar}>
-                    SCHEDULE TASK
-            </StyledLink>    
-
-            <StyledLink 
-                href="/pages/qrcode" 
-                className={activeLink('qrcode')} 
-                onClick={showSiderbar}>
-                    SYNCHRONIZE SMARTPHONE
-            </StyledLink>
-
+          )  : (
+            <StyledLogOut type="button" onClick={Logout}>LOG OUT</StyledLogOut>
+          )} 
         </StyledNavLinks>
       </StyledContent>
     </StyledContainer>

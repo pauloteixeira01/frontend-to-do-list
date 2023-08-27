@@ -31,8 +31,8 @@ export const StyledContentTitle = styled.div`
   align-items: center;
 `;
 
-export const StyledTitle = styled.div`
-  font-size: 30px;
+export const StyledImage = styled.img`
+  width: 20%;
 `;
 
 export const StyledSubTitle = styled.span`
@@ -52,6 +52,7 @@ export const StyledMenu = styled.div`
 export const StyledNavLinks = styled.nav<NavLinksProps>`
   display: flex;
   gap: 20px;
+  background-color: red;
 
   @media (max-width: 560px) {
     flex-direction: column;
@@ -89,6 +90,25 @@ export const StyledCloseSidebar = styled.div`
 `;
 
 export const StyledLink = styled(Link)`
+  color: #00ff00;
+  text-decoration: none;
+  font-size: 20px;
+  transition: 0.3s;
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+
+  &.active {
+    background-color: black;
+  }
+
+  @media(width > 600px) {
+    padding: 3rem;
+  }
+`;
+
+export const StyledLogOut = styled.button`
   color: #00ff00;
   text-decoration: none;
   font-size: 20px;
