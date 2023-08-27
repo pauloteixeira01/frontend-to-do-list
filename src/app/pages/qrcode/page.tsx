@@ -3,6 +3,11 @@
 import React, { useState } from 'react';
 import Qr from 'qrcode.react';
 import Link from 'next/link'
+import { useRouter } from 'next/router';
+import Router from 'next/router'
+
+import isConnected from '@/app/utils/isConnected';
+
 import { redirect } from 'next/navigation'
 import {Navigate} from 'react-router-dom'
 
@@ -14,21 +19,23 @@ export default function Qrcode() {
     const [mac, setMac] = useState('');
 	const [redirection, setRedirection] = useState(false);
 
-	async function SaveMac() {
+	// const router = useRouter();
+	
+	function SaveMac() {
 		console.log('Called function: ', mac)
 		if (!mac) {
-			alert('Informe o código do smartphone');
+			alert('Please, write the code from smartphone.');
 		} else {
-			console.log('Bridgette B: ')
-			await localStorage.setItem('@yourMac/macaddress', mac);
+			localStorage.setItem('@yourMac/macaddress', mac);
 			setRedirection(true);
-			// window.location.reload();
-		}		
+			window.location.reload();
+		}	
 	}
+
 	console.log('CarmellaBing: ', redirection)
 	return(
 		<S.Container>
-			{ redirection && redirect('/') }
+			{ isConnected && redirect('/') }
 
 			<S.Content>
 				<h1>Please, use a QRCODE reader app.</h1>
@@ -44,8 +51,6 @@ export default function Qrcode() {
 				</S.ValidationCode>
 
 			</S.Content>
-
-			<Footer />
 		</S.Container>	
 	)
 }
