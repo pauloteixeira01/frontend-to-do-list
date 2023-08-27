@@ -10,7 +10,6 @@ export const StyledContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid white;
 `;
 
 export const StyledContent = styled.div`
@@ -52,7 +51,8 @@ export const StyledMenu = styled.div`
 export const StyledNavLinks = styled.nav`
   display: flex;
   gap: 20px;
-  background-color: red;
+  /* background-color: red; */
+  
 
   @media (max-width: 560px) {
     flex-direction: column;
@@ -96,12 +96,14 @@ export const StyledLink = styled(Link)`
   font-size: 20px;
   transition: 0.3s;
   width: 100%;
-  height: 12vh;
+  height: 10vh;
   display: flex;
   align-items: center;
-
+  justify-content: center;
+  
   &.active {
-    background-color: black;
+    background-color: #4367FB;
+    color: #B0C4DE;
   }
 
   @media(width > 600px) {

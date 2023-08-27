@@ -59,7 +59,7 @@ export default function Header() {
 
           <StyledLink 
             href="/pages/task" 
-            className={activeLink('/task')} 
+            className={activeLink('pages/task')} 
             onClick={showSiderbar}
           >
             SCHEDULE TASK
