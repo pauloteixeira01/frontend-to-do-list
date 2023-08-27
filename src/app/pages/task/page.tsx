@@ -127,7 +127,7 @@ function Business({ match }: MatchProps) {
             TypeIcons.map((icon, index) => (
               index > 0 && 
               <button type="button" onClick={() => setType(index)} key={index}>
-                <img src={`${icon}`} alt="Task Type" 
+                <img src={`${icon}.png`} alt="Task Type" 
                 className={type && type !== index ? 'inative' : ''}/>
               </button>
             ))
