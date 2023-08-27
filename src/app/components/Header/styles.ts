@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import Link from 'next/link'
 
-interface NavLinksProps {
-  menu: boolean;
+type NavLinksProps = {
+  menu: string;
 }
 
 export const StyledContainer = styled.div`
@@ -49,7 +49,7 @@ export const StyledMenu = styled.div`
   }
 `;
 
-export const StyledNavLinks = styled.nav<NavLinksProps>`
+export const StyledNavLinks = styled.nav`
   display: flex;
   gap: 20px;
   background-color: red;
@@ -64,7 +64,8 @@ export const StyledNavLinks = styled.nav<NavLinksProps>`
     top: 0px;
     right: 0px;
     width: 60%;
-    right: ${({menu}) => menu ? '0' : '-100%'};
+    /* right: ${({menu}) => menu === 'true' ? '0' : '-100%'}; */
+    right: 0;
     transition: 0.5s;
 
     a {
@@ -95,7 +96,7 @@ export const StyledLink = styled(Link)`
   font-size: 20px;
   transition: 0.3s;
   width: 100%;
-  height: 10vh;
+  height: 12vh;
   display: flex;
   align-items: center;
 
