@@ -39,15 +39,17 @@ function Business({ match }: MatchProps) {
   
 
   async function LoadTaskDetails() {
-    await api.get(`/task/${match?.params.id}`)
-    .then(response => {
-      setType(response.data.type)
-      setDone(response.data.done)  
-      setName(response.data.name)
-      setDescription(response.data.description)
-      setDate(format(new Date(response.data.when), 'yyyy-MM-dd'))
-      setHour(format(new Date(response.data.when), 'HH:mm'))
-    })
+    if(match) {
+      await api.get(`/task/${match?.params.id}`)
+      .then(response => {
+        setType(response.data.type)
+        setDone(response.data.done)  
+        setName(response.data.name)
+        setDescription(response.data.description)
+        setDate(format(new Date(response.data.when), 'yyyy-MM-dd'))
+        setHour(format(new Date(response.data.when), 'HH:mm'))
+      })
+    } 
   }
 
   async function Save() {
@@ -81,16 +83,16 @@ function Business({ match }: MatchProps) {
     // }
 
     if (match?.params.id) {
-      await api.put(`/task/${match.params.id}`,{
+      await api.put(`/pages/task/${match.params.id}`,{
         macaddress: isConnected,
         done,
         type,
         name,
         description,
-        when: `${date}T${hour}:00.000`
+        when: `${date}T${hour}:${minute}:00.000`
       }).then(() => setRedirection(true))
     } else { 
-      await api.post('/task',{
+      await api.post('/pages/task',{
         macaddress: isConnected,
         type,
         name,
@@ -117,14 +119,14 @@ function Business({ match }: MatchProps) {
  
   return (
     <S.Container>
-      {/* { redirection && redirect('pages/task') } */}
+      { redirection && redirect('/pages/qrcode') }
     
       <S.Form>
         <S.TypeIcons>
           {
             TypeIcons.map((icon, index) => (
               index > 0 && 
-              <button type="button" onClick={() => setType(index)}>
+              <button type="button" onClick={() => setType(index)} key={index}>
                 <img src={`${icon}`} alt="Task Type" 
                 className={type && type !== index ? 'inative' : ''}/>
               </button>
@@ -172,8 +174,6 @@ function Business({ match }: MatchProps) {
         </S.Save>
 
       </S.Form>
-
-      <Footer /> 
     </S.Container>
   )    
 }
