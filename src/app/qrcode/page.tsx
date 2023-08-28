@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Qr from 'qrcode.react';
 import { redirect } from 'next/navigation'
 
-import isConnected from '@/app/utils/isConnected';
+import isConnected from '@/utils/isConnected';
 
 import * as S from './styles';
 

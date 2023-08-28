@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { usePathname } from 'next/navigation'
 
-import isConnected from '@/app/utils/isConnected'
+import isConnected from '@/utils/isConnected'
 
 import { 
   StyledContainer, 
@@ -58,8 +58,8 @@ export default function Header() {
           </StyledLink>
 
           <StyledLink 
-            href="/pages/task" 
-            className={activeLink('pages/task')} 
+            href="/task" 
+            className={activeLink('/task')} 
             onClick={showSiderbar}
           >
             SCHEDULE TASK
@@ -67,8 +67,8 @@ export default function Header() {
           
           { !isConnected ? (
             <StyledLink 
-              href="/pages/qrcode" 
-              className={activeLink('/pages/qrcode')} 
+              href="/qrcode" 
+              className={activeLink('/qrcode')} 
               onClick={showSiderbar}
             >
               SYNCHRONIZE SMARTPHONE
