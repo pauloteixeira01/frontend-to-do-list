@@ -30,9 +30,6 @@ export default function Home() {
   const [tasks, setTasks] = useState<TaskProps[]>([]);
   const [redirection, setRedirection] = useState(false);
 
-
-  console.log('Melissa May: ', isConnected)
-
   async function loadTasks() {
     await api.get(`/task/filter/${filterActived}/${isConnected}`)
       .then(response => {
