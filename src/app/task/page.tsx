@@ -8,7 +8,7 @@ import {Navigate} from 'react-router-dom'
 import { format } from 'date-fns';
 // import { TimeField } from '@mui/x-date-pickers/TimeField';
 
-import api from '../../services/api';
+import api from '@/services/api';
 import isConnected from '../../utils/isConnected';
 
 import Footer from '../../components/Footer';
@@ -119,7 +119,7 @@ function Business({ match }: MatchProps) {
  
   return (
     <S.Container>
-      { redirection && redirect('/pages/qrcode') }
+      { redirection && redirect('/qrcode') }
     
       <S.Form>
         <S.TypeIcons>

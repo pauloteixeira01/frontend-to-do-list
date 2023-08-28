@@ -4,10 +4,10 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
-import api from '@/app/services/api';
-import isConnected from '@/app/utils/isConnected';
-import FilterCard from '@/app/components/FilterCard'
-import BusinessCard from '@/app/components/BusinessCard'
+import api from '@/services/api';
+import isConnected from '@/utils/isConnected';
+import FilterCard from '@/components/FilterCard'
+import BusinessCard from '@/components/BusinessCard'
 
 import {
   Container,
@@ -51,7 +51,7 @@ export default function Home() {
 
   return (
     <Container>
-      { redirection && redirect('/pages/qrcode')}
+      { redirection && redirect('/qrcode')}
             
       <FilterArea>
         <button type="button" onClick={() => setFilterActived("all")}>
