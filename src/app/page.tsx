@@ -1,7 +1,7 @@
 'use client'
 
-import Routes from './routes'
-import Home from './pages/home'
+import Routes from '../routes'
+import Home from './home'
 
 export default function App() {
   return <Home />
