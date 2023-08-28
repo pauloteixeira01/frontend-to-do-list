@@ -83,7 +83,7 @@ function Business({ match }: MatchProps) {
     // }
 
     if (match?.params.id) {
-      await api.put(`/pages/task/${match.params.id}`,{
+      await api.put(`/task/${match.params.id}`,{
         macaddress: isConnected,
         done,
         type,
@@ -92,7 +92,7 @@ function Business({ match }: MatchProps) {
         when: `${date}T${hour}:${minute}:00.000`
       }).then(() => setRedirection(true))
     } else { 
-      await api.post('/pages/task',{
+      await api.post('/task',{
         macaddress: isConnected,
         type,
         name,
